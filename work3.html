@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+     <head>
+    <meta charset="UTF-8">
+    <title>一个按钮控制定时器的开始与暂停</title>
+        <style type="text/css">
+        div {
+           text-align: center;
+           font-size: 100px;
+           padding: 100px;
+       }
+       
+       button {
+           display: block;
+           margin: 50px auto;
+           width: 500px;
+           height: 100px;
+           font-size: 30px;
+           position: relative;
+       }
+       
+       span {
+           color: rgba(249, 4, 20, 0.959)
+       }
+        </style>
+     </head>
+     <body>        
+        <button id="start" onclick="startTime()">计时开始</button>
+        <div id="demo"> </div>     
+        <script type="text/javascript">
+              var myVar;//声明全局变量
+              var i = 0;//设置一个变量来存储点击的次数
+              var j = 0;//设置一个全局变量来记录流逝的秒数，
+
+        function startTime() {
+            var block=document.getElementById("demo")//调用文字div
+            var myButton = document.getElementById("start");//调用按钮
+            if (i % 2 == 0) { //对点击的次数做取余操作来判断点击次数的奇偶性。% 算术操作符取余            
+                 myButton.innerHTML = "计时暂停";//如果点击偶数下暂停计时，按钮变成开始计时。 
+                 myVar = setInterval(function(){
+                 j += 1;//变量流逝秒数不断累加。赋值操作符+=： x += y 代表着 x = x+y
+                 block.innerHTML = 'Time passed: '+'<span>' +j +'</span>'+'s';
+                }, 1000)
+            } else {
+                myButton.innerHTML = "计时开始";//点击奇数下开始计时，按钮变为暂停计时。
+                clearInterval(myVar);//clearInterval( )可以用来停止持续执行。
+            }
+            i++;//点击次数累加increment
+        }
+
+        </script>
+
+    </body>
+</html>
